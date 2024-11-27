@@ -1,5 +1,6 @@
 from django.contrib import admin
 from.import models
+from website import models as models_site
 from django.utils.safestring import mark_safe
 
 # Register your models here.
@@ -51,6 +52,6 @@ class SocialCountAdmin(CustomAddmin):
 def _register(model,admin_class):
     admin.site.register(model,admin_class)
 
-_register(models.SiteInfo,SiteInfoAdmin)
+_register(models_site.SiteInfo,SiteInfoAdmin)
 _register(models.SocialCount,SocialCountAdmin)
 _register(models.Newsletter,NewsletterAdmin)

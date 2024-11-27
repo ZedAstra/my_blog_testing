@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from.import models 
+from.import models
+from website import models as models_site
 from about import models as about_models
 from django.utils.text import slugify
 from datetime import datetime
@@ -9,7 +10,7 @@ from django.http import JsonResponse
 from django.core.validators import validate_email
 
 def timeline(request):
-    site_info = models.SiteInfo.objects.filter(status=True)[:1].get()
+    site_info = models_site.SiteInfo.objects.filter(status=True)[:1].get()
     gallerie = about_models.Gallerie.objects.filter(status=True)
     events_r = models.Evenement.objects.all().order_by('-date_add')[:3] 
     publication = models.Publication.objects.filter(status=True).all()
@@ -30,7 +31,7 @@ def timeline(request):
     return render(request,"pages/list-two-column.html",datas)
 
 def detail(request,slug):
-    site_info = models.SiteInfo.objects.filter(status=True)[:1].get()
+    site_info = models_site.SiteInfo.objects.filter(status=True)[:1].get()
     publication_r = models.Publication.objects.all().order_by('-date_add')[:3]
     publication = models.Publication.objects.get(slug=slug)
     gallerie = about_models.Gallerie.objects.filter(status=True)
@@ -45,7 +46,7 @@ def detail(request,slug):
     return render(request,"pages/detail-standart.html",datas)
 
 def cours(request):
-    site_info = models.SiteInfo.objects.filter(status=True)[:1].get()
+    site_info = models_site.SiteInfo.objects.filter(status=True)[:1].get()
     events_r = models.Evenement.objects.all().order_by('-date_add')[:3]
     gallerie = about_models.Gallerie.objects.filter(status=True)
     cours = models.Cours.objects.filter(status=True).all()
@@ -66,7 +67,7 @@ def cours(request):
     return render(request,"pages/cours.html",datas)
 
 def video(request):
-    site_info = models.SiteInfo.objects.filter(status=True)[:1].get()
+    site_info = models_site.SiteInfo.objects.filter(status=True)[:1].get()
     video = models.Video.objects.filter(status=True)
     datas = {
             "video":video,
@@ -74,7 +75,7 @@ def video(request):
     return render(request,"pages/video-custom-player.html",datas)
 
 def evenement(request):
-    site_info = models.SiteInfo.objects.filter(status=True)[:1].get()
+    site_info = models_site.SiteInfo.objects.filter(status=True)[:1].get()
     evenement = models.Evenement.objects.filter(status=True).all()
     events_r = models.Evenement.objects.all().order_by('-date_add')[:3]
     gallerie = about_models.Gallerie.objects.filter(status=True)
@@ -97,7 +98,7 @@ def evenement(request):
     return render(request,"pages/evenements.html",datas)
 
 def details_events(request,slug):
-    site_info = models.SiteInfo.objects.filter(status=True)[:1].get()
+    site_info = models_site.SiteInfo.objects.filter(status=True)[:1].get()
     events = models.Evenement.objects.get(slug=slug)
     events_r = models.Evenement.objects.all().order_by('-date_add')[:3]
     datas = {
@@ -109,7 +110,7 @@ def details_events(request,slug):
     return render(request,"pages/details-events.html",datas)
 
 def textes(request):
-    site_info = models.SiteInfo.objects.filter(status=True)[:1].get()
+    site_info = models_site.SiteInfo.objects.filter(status=True)[:1].get()
     gallerie = about_models.Gallerie.objects.filter(status=True)
     events_r = models.Evenement.objects.all().order_by('-date_add')[:3]
     texte = models.Textes.objects.filter(status=True).all()

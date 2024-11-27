@@ -8,7 +8,7 @@ from django.core.validators import validate_email
 
 # Create your views here.
 def about(request):
-    site_info = models.SiteInfo.objects.filter(status=True)[:1].get()
+    site_info = models_site.SiteInfo.objects.filter(status=True)[:1].get()
     about = models.Presentation.objects.filter(status=True)[:1]
     site_info = models_site.SiteInfo.objects.filter(status=True)[:1]
     datas = {
@@ -19,7 +19,7 @@ def about(request):
     return render(request,'pages/about-us.html',datas)
 
 def contact(request):
-    site_info = models.SiteInfo.objects.filter(status=True)[:1].get()
+    site_info = models_site.SiteInfo.objects.filter(status=True)[:1].get()
     datas = {
             'site_info':site_info,
     }
@@ -27,7 +27,7 @@ def contact(request):
 
 
 def author(request):
-    site_info = models.SiteInfo.objects.filter(status=True)[:1].get()
+    site_info = models_site.SiteInfo.objects.filter(status=True)[:1].get()
     curriculum = models.Curriculum.objects.filter(status=True)[:1].get() 
     site_info = models_site.SiteInfo.objects.filter(status=True)[:1].get()
     datas = {
